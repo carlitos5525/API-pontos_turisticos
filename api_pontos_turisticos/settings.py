@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'avaliacoes',
     'atracoes',
     'enderecos',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
