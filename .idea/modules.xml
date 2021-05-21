@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/api_pontos_turisticos.iml" filepath="$PROJECT_DIR$/.idea/api_pontos_turisticos.iml" />
+      <module fileurl="file://$USER_HOME$/venvs/projetoAPI/.idea/projetoAPI.iml" filepath="$USER_HOME$/venvs/projetoAPI/.idea/projetoAPI.iml" />
     </modules>
   </component>
 </project>
