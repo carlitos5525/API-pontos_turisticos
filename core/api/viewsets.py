@@ -9,7 +9,17 @@ class PontoTuristicoViewSet(ModelViewSet):
     serializer_class = PontoTuristicoSerializer
 
     def get_queryset(self):
-        return PontoTuristico.objects.filter(is_approved=True)
+        id = self.request.query_params.get('id', None)
+        name = self.request.query_params.get('name', None)
+        description = self.request.query_params.get('description', None)
+        query = PontoTuristico.objects.filter(is_approved=True)
+        if id:
+            query = query.filter(id=id)
+        if name:
+            query = query.filter(name__icontains=name)
+        if description:
+            query = query.filter(description=description)
+        return query
 
     # def list(self, request, *args, **kwargs):
         # return Response({'teste': 123})
