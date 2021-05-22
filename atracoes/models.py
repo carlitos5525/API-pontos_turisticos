@@ -5,6 +5,7 @@ class Atracao(models.Model):
     description = models.TextField()
     opening_hours = models.TextField()
     min_age = models.IntegerField()
+    photo = models.ImageField(upload_to='atracoes', null=True, blank=True)
 
     class Meta:
         verbose_name = 'Atração'

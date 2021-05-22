@@ -17,8 +17,8 @@ class PontoTuristicoViewSet(ModelViewSet):
     # def create(self, request):
         # return Response({'Hello': request.data['nome']})
 
-    #def destroy(self, request, *args, **kwargs):
-        #pass
+    # def destroy(self, request, *args, **kwargs):
+        # pass
 
     # criando uma action personalizada
     # detail=True serve para que o framework envie a pk para action
@@ -26,5 +26,3 @@ class PontoTuristicoViewSet(ModelViewSet):
     @action(methods=['get'], detail=True)
     def denunciar(self, request, pk):
         return Response({'teste': 'deu boa'})
-
-
