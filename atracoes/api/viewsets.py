@@ -13,4 +13,3 @@ class AtracaoViewSet(ModelViewSet):
     authentication_classes = (TokenAuthentication, )
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['name', 'description']
-
