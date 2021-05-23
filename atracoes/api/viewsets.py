@@ -4,7 +4,6 @@ from .serializers import AtracoesSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 
 
-
 class AtracaoViewSet(ModelViewSet):
     queryset = Atracao.objects.all()
     serializer_class = AtracoesSerializer

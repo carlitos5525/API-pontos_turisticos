@@ -1,4 +1,6 @@
 from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import TokenAuthentication
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from core.models import PontoTuristico
@@ -7,7 +9,8 @@ from core.api.serializers import PontoTuristicoSerializer
 
 class PontoTuristicoViewSet(ModelViewSet):
     serializer_class = PontoTuristicoSerializer
-
+    permission_classes = (IsAuthenticated, )
+    authentication_classes = (TokenAuthentication, )
     def get_queryset(self):
         id = self.request.query_params.get('id', None)
         name = self.request.query_params.get('name', None)

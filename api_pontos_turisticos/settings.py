@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'enderecos',
     'rest_framework',
     'django_filters',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
