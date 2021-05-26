@@ -5,13 +5,14 @@ from atracoes.api.serializers import AtracoesSerializer
 from comentarios.api.serializers import ComentarioSerializer
 from avaliacoes.api.serializers import AvaliacaoSerializer
 from enderecos.api.serializers import EnderecoSerializer
+from atracoes.models import Atracao
 
 
 class PontoTuristicoSerializer(ModelSerializer):
     atracoes = AtracoesSerializer(many=True)
-    comentarios = ComentarioSerializer(many=True)
-    avaliacoes = AvaliacaoSerializer(many=True)
-    enderecos = EnderecoSerializer()
+    comentarios = ComentarioSerializer(many=True, read_only=True)
+    avaliacoes = AvaliacaoSerializer(many=True, read_only=True)
+    enderecos = EnderecoSerializer(read_only=True)
     complete_description = SerializerMethodField()
 
     class Meta:
@@ -20,5 +21,21 @@ class PontoTuristicoSerializer(ModelSerializer):
                   'atracoes', 'comentarios', 'avaliacoes', 'enderecos',
                   'complete_description')
 
-    def get_complete_description(self, obj):
+        # read_only_fields = ('comentarios', 'avaliacoes', 'enderecos')
+
+    def create_atracoes(selfself, atracoes, ponto):
+        for atracao in atracoes:
+            at = Atracao.objects.create(**atracao)
+            ponto.atracoes.add(at)
+
+    def create(self, validated_data):
+        atracoes = validated_data['atracoes']
+        del validated_data['atracoes']
+        ponto = PontoTuristico.objects.create(**validated_data)
+        self.create_atracoes(atracoes, ponto)
+        return ponto
+
+
+    @staticmethod
+    def get_complete_description(obj):
         return f'{obj.name} - {obj.description}'
