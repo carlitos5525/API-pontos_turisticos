@@ -46,3 +46,5 @@ class PontoTuristicoSerializer(ModelSerializer):
     @staticmethod
     def get_complete_description(obj):
         return f'{obj.name} - {obj.description}'
+
+

@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
@@ -39,3 +40,11 @@ class PontoTuristicoViewSet(ModelViewSet):
     @action(methods=['get'], detail=True)
     def denunciar(self, request, pk):
         return Response({'teste': 'deu boa'})
+
+    @action(methods=['post'], detail=True)
+    def associa_atracoes(self, request, pk):
+        atracoes = request.data['ids']
+        ponto = PontoTuristico.objects.get(id=pk)
+        ponto.atracoes.set(atracoes)
+        ponto.save()
+        return HttpResponse('Ok')
